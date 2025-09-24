@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Project!</string>
+    <string name="title_app">Film Search</string>
+    <string name="buttons_text">Меню</string>
+    <string name="buttons_text2">Избранное</string>
+    <string name="buttons_text3">Посмотреть позже</string>
+    <string name="buttons_text4">Подборки</string>
+    <string name="buttons_text5">Настройки</string>
+    <string name="poster1_descr">TODO</string>
+    <string name="poster2_descr">TODO</string>
+    <string name="poster3_descr">TODO</string>
+</resources>
