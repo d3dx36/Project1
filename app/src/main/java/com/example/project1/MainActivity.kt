@@ -1,8 +1,10 @@
 package com.example.project1
 
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.ActionMode
+import android.view.View
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.project1.databinding.ActivityMainBinding
@@ -12,9 +14,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-      initNavigation()
+        initNavigation()
     }
-    fun initNavigation(){
+
+    fun initNavigation() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.topAppBar.setOnMenuItemClickListener {
@@ -23,12 +26,15 @@ class MainActivity : ComponentActivity() {
                     Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
                     true
                 }
-                R.id.topAppBar->{
+
+                R.id.topAppBar -> {
                     Toast.makeText(this, "Меню", Toast.LENGTH_SHORT).show()
                     true
                 }
+
                 else -> false
             }
+
 
         }
         binding.bottomNavigation.setOnItemSelectedListener {
@@ -47,8 +53,10 @@ class MainActivity : ComponentActivity() {
                     Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
                     true
                 }
+
                 else -> false
             }
         }
+
     }
 }
