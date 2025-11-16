@@ -1,0 +1,395 @@
+Index: app/src/main/java/com/example/project1/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.project1\n\n\nimport android.animation.ObjectAnimator\nimport android.os.Bundle\nimport android.view.ActionMode\nimport android.view.View\nimport android.widget.Toast\nimport androidx.activity.ComponentActivity\nimport com.example.project1.databinding.ActivityMainBinding\n\nclass MainActivity : ComponentActivity() {\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n\n        initNavigation()\n    }\n\n    fun initNavigation() {\n        val binding = ActivityMainBinding.inflate(layoutInflater)\n        setContentView(binding.root)\n        binding.topAppBar.setOnMenuItemClickListener {\n            when (it.itemId) {\n                R.id.settings -> {\n                    Toast.makeText(this, \"Настройки\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                R.id.topAppBar -> {\n                    Toast.makeText(this, \"Меню\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                else -> false\n            }\n\n\n        }\n        binding.bottomNavigation.setOnItemSelectedListener {\n            when (it.itemId) {\n                R.id.favorites -> {\n                    Toast.makeText(this, \"Избранное\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                R.id.watch_later -> {\n                    Toast.makeText(this, \"Посмотреть позже\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                R.id.selections -> {\n                    Toast.makeText(this, \"Подборки\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                else -> false\n            }\n        }\n\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/project1/MainActivity.kt b/app/src/main/java/com/example/project1/MainActivity.kt
+--- a/app/src/main/java/com/example/project1/MainActivity.kt	(revision f68b56e696b40675df344d584a79624f2f7a7d2a)
++++ b/app/src/main/java/com/example/project1/MainActivity.kt	(date 1763269233123)
+@@ -59,4 +59,17 @@
+         }
+ 
+     }
+-}
+\ No newline at end of file
++
++    val filmsDataBase = listOf(
++        Film("Film title", R.drawable.dead_of_winter, "This should be a description"),
++        Film("imaginary", R.drawable.imaginary, "This should be a description"),
++        Film("nine windows", R.drawable.nine_windows, "This should be a description"),
++
++    )
++}
++
++data class Film(
++    val title: String,
++    val poster: Int,
++    val description: String
++)
+\ No newline at end of file
+Index: .idea/deviceManager.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deviceManager.xml b/.idea/deviceManager.xml
+deleted file mode 100644
+--- a/.idea/deviceManager.xml	(revision f68b56e696b40675df344d584a79624f2f7a7d2a)
++++ /dev/null	(revision f68b56e696b40675df344d584a79624f2f7a7d2a)
+@@ -1,13 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="DeviceTable">
+-    <option name="columnSorters">
+-      <list>
+-        <ColumnSorterState>
+-          <option name="column" value="Name" />
+-          <option name="order" value="ASCENDING" />
+-        </ColumnSorterState>
+-      </list>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/codeStyles/Project.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/codeStyles/Project.xml b/.idea/codeStyles/Project.xml
+deleted file mode 100644
+--- a/.idea/codeStyles/Project.xml	(revision f68b56e696b40675df344d584a79624f2f7a7d2a)
++++ /dev/null	(revision f68b56e696b40675df344d584a79624f2f7a7d2a)
+@@ -1,158 +0,0 @@
+-<component name="ProjectCodeStyleConfiguration">
+-  <code_scheme name="Project" version="173">
+-    <JavaCodeStyleSettings>
+-      <option name="IMPORT_LAYOUT_TABLE">
+-        <value>
+-          <package name="" withSubpackages="true" static="false" module="true" />
+-          <package name="android" withSubpackages="true" static="true" />
+-          <package name="androidx" withSubpackages="true" static="true" />
+-          <package name="com" withSubpackages="true" static="true" />
+-          <package name="junit" withSubpackages="true" static="true" />
+-          <package name="net" withSubpackages="true" static="true" />
+-          <package name="org" withSubpackages="true" static="true" />
+-          <package name="java" withSubpackages="true" static="true" />
+-          <package name="javax" withSubpackages="true" static="true" />
+-          <package name="" withSubpackages="true" static="true" />
+-          <emptyLine />
+-          <package name="android" withSubpackages="true" static="false" />
+-          <emptyLine />
+-          <package name="androidx" withSubpackages="true" static="false" />
+-          <emptyLine />
+-          <package name="com" withSubpackages="true" static="false" />
+-          <emptyLine />
+-          <package name="junit" withSubpackages="true" static="false" />
+-          <emptyLine />
+-          <package name="net" withSubpackages="true" static="false" />
+-          <emptyLine />
+-          <package name="org" withSubpackages="true" static="false" />
+-          <emptyLine />
+-          <package name="java" withSubpackages="true" static="false" />
+-          <emptyLine />
+-          <package name="javax" withSubpackages="true" static="false" />
+-          <emptyLine />
+-          <package name="" withSubpackages="true" static="false" />
+-          <emptyLine />
+-        </value>
+-      </option>
+-    </JavaCodeStyleSettings>
+-    <JetCodeStyleSettings>
+-      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
+-    </JetCodeStyleSettings>
+-    <codeStyleSettings language="XML">
+-      <option name="FORCE_REARRANGE_MODE" value="1" />
+-      <indentOptions>
+-        <option name="CONTINUATION_INDENT_SIZE" value="4" />
+-      </indentOptions>
+-      <arrangement>
+-        <rules>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>xmlns:android</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>^$</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>xmlns:.*</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>^$</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-              <order>BY_NAME</order>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>.*:id</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>.*:name</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>name</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>^$</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>style</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>^$</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>.*</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>^$</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-              <order>BY_NAME</order>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>.*</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-              <order>ANDROID_ATTRIBUTE_ORDER</order>
+-            </rule>
+-          </section>
+-          <section>
+-            <rule>
+-              <match>
+-                <AND>
+-                  <NAME>.*</NAME>
+-                  <XML_ATTRIBUTE />
+-                  <XML_NAMESPACE>.*</XML_NAMESPACE>
+-                </AND>
+-              </match>
+-              <order>BY_NAME</order>
+-            </rule>
+-          </section>
+-        </rules>
+-      </arrangement>
+-    </codeStyleSettings>
+-    <codeStyleSettings language="kotlin">
+-      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
+-    </codeStyleSettings>
+-  </code_scheme>
+-</component>
+\ No newline at end of file
+Index: .idea/codeStyles/codeStyleConfig.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/codeStyles/codeStyleConfig.xml b/.idea/codeStyles/codeStyleConfig.xml
+deleted file mode 100644
+--- a/.idea/codeStyles/codeStyleConfig.xml	(revision f68b56e696b40675df344d584a79624f2f7a7d2a)
++++ /dev/null	(revision f68b56e696b40675df344d584a79624f2f7a7d2a)
+@@ -1,5 +0,0 @@
+-<component name="ProjectCodeStyleConfiguration">
+-  <state>
+-    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
+-  </state>
+-</component>
+\ No newline at end of file
+Index: app/src/main/res/layout/film_item.xml
+===================================================================
+diff --git a/app/src/main/res/layout/film_item.xml b/app/src/main/res/layout/film_item.xml
+new file mode 100644
+--- /dev/null	(date 1763269233177)
++++ b/app/src/main/res/layout/film_item.xml	(date 1763269233177)
+@@ -0,0 +1,49 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.cardview.widget.CardView
++    android:id="@+id/item_container"
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="150dp"
++    android:elevation="1dp"
++    app:cardCornerRadius="10dp">
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <ImageView
++            android:id="@+id/poster"
++            android:layout_width="150dp"
++            android:layout_height="match_parent"
++            android:scaleType="centerCrop"
++            app:layout_constraintLeft_toLeftOf="parent"
++            app:layout_constraintTop_toTopOf="parent"
++            tools:src="@tools:sample/avatars" />
++
++        <TextView
++            android:id="@+id/title"
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:textAlignment="center"
++            android:padding="8dp"
++            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
++            app:layout_constraintLeft_toRightOf="@+id/poster"
++            app:layout_constraintRight_toRightOf="parent"
++            app:layout_constraintTop_toTopOf="parent"
++            tools:text="Title" />
++
++        <TextView
++            android:id="@+id/description"
++            android:layout_width="0dp"
++            android:layout_height="0dp"
++            android:padding="8dp"
++            app:layout_constraintBottom_toBottomOf="parent"
++            app:layout_constraintLeft_toRightOf="@+id/poster"
++            app:layout_constraintRight_toRightOf="parent"
++            app:layout_constraintTop_toBottomOf="@+id/title"
++            tools:text="@tools:sample/lorem/random" />
++
++    </androidx.constraintlayout.widget.ConstraintLayout>
++</androidx.cardview.widget.CardView>
+\ No newline at end of file
+Index: app/src/main/java/com/example/project1/ui/theme/FilmViewHolder.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/project1/ui/theme/FilmViewHolder.kt b/app/src/main/java/com/example/project1/ui/theme/FilmViewHolder.kt
+new file mode 100644
+--- /dev/null	(date 1763269233190)
++++ b/app/src/main/java/com/example/project1/ui/theme/FilmViewHolder.kt	(date 1763269233190)
+@@ -0,0 +1,20 @@
++//import android.view.View
++//import androidx.recyclerview.widget.RecyclerView
++//
++////В конструктор класс передается layout, который мы создали(film_item.xml)
++//class FilmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
++//    //Привязываем View из layout к переменным
++//    private val title = itemView.title
++//    private val poster = itemView.poster
++//    private val description = itemView.description
++//
++//    //В этом методе кладем данные из Film в наши View
++//    fun bind(film: Film) {
++//        //Устанавливаем заголовок
++//        title.text = film.title
++//        //Устанавливаем постер
++//        poster.setImageResource(film.poster)
++//        //Устанавливаем описание
++//        description.text = film.description
++//    }
++//}
+\ No newline at end of file
+Index: app/src/main/java/com/example/project1/ui/theme/FilmListRecyclerAdapter.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/project1/ui/theme/FilmListRecyclerAdapter.kt b/app/src/main/java/com/example/project1/ui/theme/FilmListRecyclerAdapter.kt
+new file mode 100644
+--- /dev/null	(date 1763269233151)
++++ b/app/src/main/java/com/example/project1/ui/theme/FilmListRecyclerAdapter.kt	(date 1763269233151)
+@@ -0,0 +1,44 @@
++//import android.view.LayoutInflater
++//import android.view.ViewGroup
++//import androidx.recyclerview.widget.RecyclerView
++//import com.example.project1.Film
++//import com.example.project1.R
++//
++////в параметр передаем слушатель, чтобы мы потом могли обрабатывать нажатия из класса Activity
++//class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
++//    //Здесь у нас хранится список элементов для RV
++//    private val items = mutableListOf<Film>()
++//
++//    //Этот метод нужно переопределить на возврат количества элементов в списке RV
++//    override fun getItemCount() = items.size
++//
++//    //В этом методе мы привязываем наш ViewHolder и передаем туда "надутую" верстку нашего фильма
++//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
++//        return FilmViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.film_item, parent, false))
++//    }
++//
++//    //В этом методе будет привязка полей из объекта Film к View из film_item.xml
++//    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
++//        when (holder) {
++//            is FilmViewHolder -> {
++//
++//            }
++//        }
++//    }
++//
++//    //Метод для добавления объектов в наш список
++//    fun addItems(list: List<Film>) {
++//        //Сначала очищаем(если не реализовать DiffUtils)
++//        items.clear()
++//        //Добавляем
++//        items.addAll(list)
++//        //Уведомляем RV, что пришел новый список, и ему нужно заново все "привязывать"
++//        notifyDataSetChanged()
++//    }
++//
++//
++//    //Интерфейс для обработки кликов
++//    interface OnItemClickListener {
++//        fun click(film: Film)
++//    }
++//}
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"VcsDirectoryMappings\">\n    <mapping directory=\"\" vcs=\"Git\" />\n    <mapping directory=\"$PROJECT_DIR$\" vcs=\"Git\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+--- a/.idea/vcs.xml	(revision f68b56e696b40675df344d584a79624f2f7a7d2a)
++++ b/.idea/vcs.xml	(date 1763269233224)
+@@ -2,6 +2,5 @@
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+     <mapping directory="" vcs="Git" />
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file

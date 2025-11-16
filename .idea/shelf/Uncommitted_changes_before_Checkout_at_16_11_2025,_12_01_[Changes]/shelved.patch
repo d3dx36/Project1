@@ -1,0 +1,14 @@
+Index: app/src/main/res/anim/poster_anim.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n\n<set xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:duration=\"500\">\n    <scale\n        android:fromYScale=\"0\"\n        android:fromXScale=\"0\"\n        android:toYScale=\"1\"\n        android:toXScale=\"1\"\n        android:pivotY=\"50%\"\n        android:pivotX=\"50%\"/>\n\n    <alpha\n        android:fromAlpha=\"0\"\n        android:toAlpha=\"1\"/>\n\n</set>\n\n\n\n
+===================================================================
+diff --git a/app/src/main/res/anim/poster_anim.xml b/app/src/main/res/anim/poster_anim.xml
+--- a/app/src/main/res/anim/poster_anim.xml	(revision f68b56e696b40675df344d584a79624f2f7a7d2a)
++++ b/app/src/main/res/anim/poster_anim.xml	(date 1763269233164)
+@@ -16,5 +16,3 @@
+ 
+ </set>
+ 
+-
+-
