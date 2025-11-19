@@ -2,15 +2,14 @@ package com.example.project1
 
 
 import FilmListRecyclerAdapter
+import TopSpacingItemDecoration
 import android.animation.ObjectAnimator
-import android.content.res.Resources
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.ActionMode
 import android.view.View
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.project1.databinding.ActivityMainBinding
 
 class MainActivity : ComponentActivity() {
@@ -62,25 +61,26 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+        binding.mainRecycler.apply { // Обращаемся через binding
+            filmsAdapter = FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener{
+                override fun click(film: Film) {
+                    TODO("Not yet implemented")
+                }
+            })
+             adapter = filmsAdapter
+           layoutManager = LinearLayoutManager(this@MainActivity)
+            val decorator = TopSpacingItemDecoration(8)
+            addItemDecoration(decorator)
+        }
+        // Кладем нашу БД в RV
+        filmsAdapter.addItems(filmsDataBase)
     }
 
     val filmsDataBase = listOf(
-        Film("Film title", R.drawable.q39q, "This should be a description"),
-        Film("Film title", R.drawable.q39q, "This should be a description"),
+        Film("Воображаемый друг", R.drawable.ffmqt, "This should be a description"),
+        Film("Пила Наследие", R.drawable.lgncz, "This should be a description"),
+        Film("The Godfather", R.drawable.the_godfather, "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."), Film("The Godfather", R.drawable.the_godfather, "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."), Film("The Godfather", R.drawable.the_godfather, "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."), Film("The Godfather", R.drawable.the_godfather, "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."), Film("The Godfather", R.drawable.the_godfather, "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."),
+        Film("The Godfather", R.drawable.the_godfather, "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.")
 
     )
 }
-class TopSpacingItemDecoration (private val paddingInDp: Int): RecyclerView.ItemDecoration() {
-    private val Int.convertPx: Int
-        get() = (this * Resources.getSystem().displayMetrics.density).toInt()
-
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-        super.getItemOffsets(outRect, view, parent, state)
-        outRect.top = paddingInDp.convertPx
-        outRect.right = paddingInDp.convertPx
-        outRect.left = paddingInDp.convertPx
-
-    }
-}
-data class Film(val title: String, val poster: Int, val description: String)
-
