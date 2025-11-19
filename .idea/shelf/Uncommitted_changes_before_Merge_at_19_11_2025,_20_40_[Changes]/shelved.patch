@@ -1,0 +1,18 @@
+Index: app/src/main/java/com/example/project1/FilmListRecyclerAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import android.view.LayoutInflater\nimport android.view.ViewGroup\nimport androidx.recyclerview.widget.RecyclerView\nimport com.example.project1.Film\n\n//в параметр передаем слушатель, чтобы мы потом могли обрабатывать нажатия из класса Activity\nclass FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {\n    //Здесь у нас хранится список элементов для RV\n    private val items = mutableListOf<Film>()\n\n    //Этот метод нужно переопределить на возврат количества элементов в списке RV\n    override fun getItemCount() = items.size\n\n    //В этом методе мы привязываем наш ViewHolder и передаем туда \"надутую\" верстку нашего фильма\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {\n        return FilmViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.film_item, parent, false))\n    }\n\n    //В этом методе будет привязка полей из объекта Film к View из film_item.xml\n    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {\n        //Проверяем какой у нас ViewHolder\n        when (holder) {\n            is FilmViewHolder -> {\n                //Вызываем метод bind(), который мы создали, и передаем туда объект\n                //из нашей базы данных с указанием позиции\n                holder.bind(items[position])\n            }\n        }\n    }\n\n    //Метод для добавления объектов в наш список\n    fun addItems(list: List<Film>) {\n        //Сначала очищаем(если не реализовать DiffUtils)\n        items.clear()\n        //Добавляем\n        items.addAll(list)\n        //Уведомляем RV, что пришел новый список, и ему нужно заново все \"привязывать\"\n        notifyDataSetChanged()\n    }\n\n\n    //Интерфейс для обработки кликов\n    interface OnItemClickListener {\n        fun click(film: Film)\n    }\n\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/project1/FilmListRecyclerAdapter.kt b/app/src/main/java/com/example/project1/FilmListRecyclerAdapter.kt
+--- a/app/src/main/java/com/example/project1/FilmListRecyclerAdapter.kt	(revision 4c1ca7340ac53dc70eb3f92e062a26fd4f68e8d5)
++++ b/app/src/main/java/com/example/project1/FilmListRecyclerAdapter.kt	(date 1763559609577)
+@@ -2,6 +2,7 @@
+ import android.view.ViewGroup
+ import androidx.recyclerview.widget.RecyclerView
+ import com.example.project1.Film
++import com.example.project1.R
+ 
+ //в параметр передаем слушатель, чтобы мы потом могли обрабатывать нажатия из класса Activity
+ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
