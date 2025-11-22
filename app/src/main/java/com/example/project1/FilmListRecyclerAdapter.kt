@@ -1,7 +1,8 @@
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.project1.Film
+//import com.example.project1.Film
 import com.example.project1.R
 
 //в параметр передаем слушатель, чтобы мы потом могли обрабатывать нажатия из класса Activity
@@ -19,15 +20,22 @@ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : 
 
     //В этом методе будет привязка полей из объекта Film к View из film_item.xml
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        //Проверяем какой у нас ViewHolder
+        //Проверяем, какой у нас ViewHolder
         when (holder) {
             is FilmViewHolder -> {
                 //Вызываем метод bind(), который мы создали, и передаем туда объект
                 //из нашей базы данных с указанием позиции
                 holder.bind(items[position])
+                //Обрабатываем нажатие на весь элемент целиком(можно сделать на отдельный элемент
+                //например, картинку) и вызываем метод нашего листенера, который мы получаем из
+                //конструктора адаптера
+                holder.itemContainer.setOnClickListener {
+                    clickListener.click(items[position])
+                }
             }
         }
     }
+
 
     //Метод для добавления объектов в наш список
     fun addItems(list: List<Film>) {
@@ -38,7 +46,6 @@ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : 
         //Уведомляем RV, что пришел новый список, и ему нужно заново все "привязывать"
         notifyDataSetChanged()
     }
-
 
     //Интерфейс для обработки кликов
     interface OnItemClickListener {

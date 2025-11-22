@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project1">
         <activity
+            android:name=".DetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Project1">
