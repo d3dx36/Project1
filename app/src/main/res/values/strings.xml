@@ -9,4 +9,7 @@
     <string name="poster1_descr">TODO</string>
     <string name="poster2_descr">TODO</string>
     <string name="poster3_descr">TODO</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="disclaimer" />
 </resources>
