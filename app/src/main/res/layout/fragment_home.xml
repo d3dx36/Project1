@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/poster_1" />
+                app:srcCompat="@drawable/imaginary" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/poster_2" />
+                app:srcCompat="@drawable/jrjpg" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1 "
-                app:srcCompat="@drawable/poster_3" />
+                app:srcCompat="@drawable/the_godfather" />
 
             <ImageView
                 android:id="@+id/imageView4"

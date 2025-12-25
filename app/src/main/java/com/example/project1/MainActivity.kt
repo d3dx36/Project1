@@ -1,137 +1,78 @@
 package com.example.project1
 
 import Film
-import FilmListRecyclerAdapter
-import TopSpacingItemDecoration
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.project1.databinding.ActivityMainBinding
-
 
 class MainActivity : AppCompatActivity() {
 
-    private val filmsDataBase = listOf(
+    private lateinit var binding: ActivityMainBinding
+
+    // База данных теперь будет передаваться во фрагмент или лежать в нем
+    val filmsDataBase = listOf(
         Film("Воображаемый друг", R.drawable.ffmqt, "This should be a description"),
         Film("Пила Наследие", R.drawable.lgncz, "This should be a description"),
-        Film(
-            "The Godfather",
-            R.drawable.the_godfather,
-            "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."
-        ),
-        Film(
-            "The Godfather",
-            R.drawable.the_godfather,
-            "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."
-        ),
-        Film(
-            "The Godfather",
-            R.drawable.the_godfather,
-            "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."
-        ),
-        Film(
-            "The Godfather",
-            R.drawable.the_godfather,
-            "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to its reluctant son."
-        ),
-        Film(
-            "The Godfather",
-            R.drawable.the_godfather,
-            "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to its reluctant son."
-        ),
-        Film(
-            "The Godfather",
-            R.drawable.the_godfather,
-            "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to its reluctant son."
-        )
+        Film("The Godfather", R.drawable.the_godfather, "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."),
+       Film("Сияние", R.drawable.shining, "Two imprisoned men bond over a number of years, finding solace and eventual redemption"),
+       Film("The Shawshank Redemption", R.drawable.dead_of_winter, "Two imprisoned men bond over a number of years, finding solace and eventual redemption")
     )
-
-    private lateinit var filmsAdapter: FilmListRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initNavigation()
-        supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_placeholder, HomeFragment())
-            .addToBackStack(null)
-            .commit()
-    }
-
-
-    private fun initNavigation() {
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // --- Обработчики меню TopAppBar ---
+        initNavigation()
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fragment_placeholder, HomeFragment())
+                .commit()
+        }
+    }
+
+    private fun initNavigation() {
         binding.topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.settings -> {
                     Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
                     true
                 }
-
-                R.id.topAppBar -> {
-                    Toast.makeText(this, "Меню", Toast.LENGTH_SHORT).show()
-                    true
-                }
-
                 else -> false
             }
         }
 
-        // --- Обработчики BottomNavigationView ---
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.favorites -> {
                     Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
                     true
                 }
-
                 R.id.watch_later -> {
                     Toast.makeText(this, "Посмотреть позже", Toast.LENGTH_SHORT).show()
                     true
                 }
-
                 R.id.selections -> {
                     Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
                     true
                 }
-
                 else -> false
             }
         }
+    }
 
-        // --- Инициализация RecyclerView ---
-        binding.mainRecycler.apply {
-            filmsAdapter =
-                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
-                    override fun click(film: Film) {
-                        //Создаем бандл и кладем туда объект с данными фильма
-                        val bundle = Bundle()
-                        bundle.putParcelable("film", film)
+    fun launchDetailsFragment(film: Film) {
+        val bundle = Bundle()
+        bundle.putParcelable("film", film)
+        val fragment = DetailsFragment()
+        fragment.arguments = bundle
 
-                        // Запускаем наше активити
-                        val intent = Intent(this@MainActivity, DetailsActivity::class.java)
-
-                        // Прикрепляем бандл к интенту
-                        // putExtras - это правильный метод для Intent
-                        intent.putExtras(bundle)
-
-                        // Запускаем активити через интент
-                        startActivity(intent)
-                    }
-                })
-
-            adapter = filmsAdapter
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            val decorator = TopSpacingItemDecoration(8)
-            addItemDecoration(decorator)
-        }
-
-        // Кладем нашу БД в RV
-        filmsAdapter.addItems(filmsDataBase)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_placeholder, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
