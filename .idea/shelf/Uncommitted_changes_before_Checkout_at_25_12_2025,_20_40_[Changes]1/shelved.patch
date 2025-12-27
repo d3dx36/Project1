@@ -1,0 +1,352 @@
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"@color/background\">\n\n    <com.google.android.material.appbar.AppBarLayout\n        android:id=\"@+id/app_bar_layout\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"30dp\"\n        app:layout_constraintTop_toTopOf=\"parent\">\n\n        <com.google.android.material.appbar.MaterialToolbar\n            android:id=\"@+id/topAppBar\"\n            style=\"@style/Widget.MaterialComponents.Toolbar.Primary\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"?attr/actionBarSize\"\n            app:menu=\"@menu/toolbar_menu\"\n            app:navigationIcon=\"@drawable/menu\" />\n\n    </com.google.android.material.appbar.AppBarLayout>\n<!--Фрагмент-->\n    <FrameLayout\n        android:id=\"@+id/fragment_placeholder\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"400dp\"\n        app:layout_constraintTop_toBottomOf=\"@+id/app_bar_layout\"\n        app:layout_constraintBottom_toTopOf=\"@+id/bottom_navigation\"/>\n\n    <com.google.android.material.bottomnavigation.BottomNavigationView\n        android:id=\"@+id/bottom_navigation\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:background=\"@color/menu\"\n        android:theme=\"@style/AppTheme\"\n        app:itemIconTint=\"@android:color/white\"\n        app:itemTextColor=\"@android:color/white\"\n        app:labelVisibilityMode=\"labeled\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:menu=\"@menu/navigation_menu\" />\n\n    <LinearLayout\n        android:id=\"@+id/top_bar\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"200dp\"\n        android:layout_marginTop=\"10dp\"\n        android:gravity=\"center\"\n        android:orientation=\"horizontal\"\n        app:layout_constraintTop_toBottomOf=\"@id/app_bar_layout\">\n\n        <ImageView\n            android:id=\"@+id/poster1\"\n            android:layout_width=\"120dp\"\n            android:layout_height=\"wrap_content\"\n            android:scaleType=\"centerCrop\"\n            android:src=\"@drawable/q39q\" />\n\n        <ImageView\n            android:id=\"@+id/poster2\"\n            android:layout_width=\"120dp\"\n            android:layout_height=\"wrap_content\"\n            android:scaleType=\"centerCrop\"\n            android:src=\"@drawable/qazxc\" />\n\n        <ImageView\n            android:id=\"@+id/poster3\"\n            android:layout_width=\"120dp\"\n            android:layout_height=\"wrap_content\"\n            android:scaleType=\"centerCrop\"\n            android:src=\"@drawable/u565u\" />\n    </LinearLayout>\n\n    <androidx.recyclerview.widget.RecyclerView\n        android:id=\"@+id/main_recycler\"\n        android:layout_width=\"0dp\"\n        android:layout_height=\"0dp\"\n        android:layout_margin=\"16dp\"\n        app:layout_constraintTop_toBottomOf=\"@+id/top_bar\"\n        app:layout_constraintBottom_toTopOf=\"@+id/bottom_navigation\"\n        app:layout_constraintLeft_toLeftOf=\"parent\"\n        app:layout_constraintRight_toRightOf=\"parent\"/>\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision 52912cb9e3b033330ea15e4c5954a0b48145d643)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1766587189955)
+@@ -9,7 +9,6 @@
+         android:id="@+id/app_bar_layout"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:layout_marginTop="30dp"
+         app:layout_constraintTop_toTopOf="parent">
+ 
+         <com.google.android.material.appbar.MaterialToolbar
+@@ -19,66 +18,23 @@
+             android:layout_height="?attr/actionBarSize"
+             app:menu="@menu/toolbar_menu"
+             app:navigationIcon="@drawable/menu" />
+-
+     </com.google.android.material.appbar.AppBarLayout>
+-<!--Фрагмент-->
++
+     <FrameLayout
+         android:id="@+id/fragment_placeholder"
+-        android:layout_width="match_parent"
+-        android:layout_height="400dp"
++        android:layout_width="0dp"
++        android:layout_height="0dp"
+         app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
+-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"/>
++        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintEnd_toEndOf="parent" />
+ 
+     <com.google.android.material.bottomnavigation.BottomNavigationView
+         android:id="@+id/bottom_navigation"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:background="@color/menu"
+-        android:theme="@style/AppTheme"
+-        app:itemIconTint="@android:color/white"
+-        app:itemTextColor="@android:color/white"
+-        app:labelVisibilityMode="labeled"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:menu="@menu/navigation_menu" />
+ 
+-    <LinearLayout
+-        android:id="@+id/top_bar"
+-        android:layout_width="match_parent"
+-        android:layout_height="200dp"
+-        android:layout_marginTop="10dp"
+-        android:gravity="center"
+-        android:orientation="horizontal"
+-        app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
+-
+-        <ImageView
+-            android:id="@+id/poster1"
+-            android:layout_width="120dp"
+-            android:layout_height="wrap_content"
+-            android:scaleType="centerCrop"
+-            android:src="@drawable/q39q" />
+-
+-        <ImageView
+-            android:id="@+id/poster2"
+-            android:layout_width="120dp"
+-            android:layout_height="wrap_content"
+-            android:scaleType="centerCrop"
+-            android:src="@drawable/qazxc" />
+-
+-        <ImageView
+-            android:id="@+id/poster3"
+-            android:layout_width="120dp"
+-            android:layout_height="wrap_content"
+-            android:scaleType="centerCrop"
+-            android:src="@drawable/u565u" />
+-    </LinearLayout>
+-
+-    <androidx.recyclerview.widget.RecyclerView
+-        android:id="@+id/main_recycler"
+-        android:layout_width="0dp"
+-        android:layout_height="0dp"
+-        android:layout_margin="16dp"
+-        app:layout_constraintTop_toBottomOf="@+id/top_bar"
+-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+-        app:layout_constraintLeft_toLeftOf="parent"
+-        app:layout_constraintRight_toRightOf="parent"/>
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/project1/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.project1\n\nimport Film\nimport FilmListRecyclerAdapter\nimport TopSpacingItemDecoration\nimport android.content.Intent\nimport android.os.Bundle\nimport android.widget.Toast\nimport androidx.activity.ComponentActivity\nimport androidx.appcompat.app.AppCompatActivity\nimport androidx.recyclerview.widget.LinearLayoutManager\nimport com.example.project1.databinding.ActivityMainBinding\n\n\nclass MainActivity : AppCompatActivity() {\n\n    private val filmsDataBase = listOf(\n        Film(\"Воображаемый друг\", R.drawable.ffmqt, \"This should be a description\"),\n        Film(\"Пила Наследие\", R.drawable.lgncz, \"This should be a description\"),\n        Film(\n            \"The Godfather\",\n            R.drawable.the_godfather,\n            \"The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.\"\n        ),\n        Film(\n            \"The Godfather\",\n            R.drawable.the_godfather,\n            \"The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.\"\n        ),\n        Film(\n            \"The Godfather\",\n            R.drawable.the_godfather,\n            \"The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.\"\n        ),\n        Film(\n            \"The Godfather\",\n            R.drawable.the_godfather,\n            \"The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to its reluctant son.\"\n        ),\n        Film(\n            \"The Godfather\",\n            R.drawable.the_godfather,\n            \"The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to its reluctant son.\"\n        ),\n        Film(\n            \"The Godfather\",\n            R.drawable.the_godfather,\n            \"The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to its reluctant son.\"\n        )\n    )\n\n    private lateinit var filmsAdapter: FilmListRecyclerAdapter\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        initNavigation()\n        supportFragmentManager.beginTransaction()\n            .add(R.id.fragment_placeholder, HomeFragment())\n            .addToBackStack(null)\n            .commit()\n    }\n\n\n    private fun initNavigation() {\n        val binding = ActivityMainBinding.inflate(layoutInflater)\n        setContentView(binding.root)\n\n        // --- Обработчики меню TopAppBar ---\n        binding.topAppBar.setOnMenuItemClickListener {\n            when (it.itemId) {\n                R.id.settings -> {\n                    Toast.makeText(this, \"Настройки\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                R.id.topAppBar -> {\n                    Toast.makeText(this, \"Меню\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                else -> false\n            }\n        }\n\n        // --- Обработчики BottomNavigationView ---\n        binding.bottomNavigation.setOnItemSelectedListener {\n            when (it.itemId) {\n                R.id.favorites -> {\n                    Toast.makeText(this, \"Избранное\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                R.id.watch_later -> {\n                    Toast.makeText(this, \"Посмотреть позже\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                R.id.selections -> {\n                    Toast.makeText(this, \"Подборки\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                else -> false\n            }\n        }\n\n        // --- Инициализация RecyclerView ---\n        binding.mainRecycler.apply {\n            filmsAdapter =\n                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {\n                    override fun click(film: Film) {\n                        //Создаем бандл и кладем туда объект с данными фильма\n                        val bundle = Bundle()\n                        bundle.putParcelable(\"film\", film)\n\n                        // Запускаем наше активити\n                        val intent = Intent(this@MainActivity, DetailsActivity::class.java)\n\n                        // Прикрепляем бандл к интенту\n                        // putExtras - это правильный метод для Intent\n                        intent.putExtras(bundle)\n\n                        // Запускаем активити через интент\n                        startActivity(intent)\n                    }\n                })\n\n            adapter = filmsAdapter\n            layoutManager = LinearLayoutManager(this@MainActivity)\n            val decorator = TopSpacingItemDecoration(8)\n            addItemDecoration(decorator)\n        }\n\n        // Кладем нашу БД в RV\n        filmsAdapter.addItems(filmsDataBase)\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/project1/MainActivity.kt b/app/src/main/java/com/example/project1/MainActivity.kt
+--- a/app/src/main/java/com/example/project1/MainActivity.kt	(revision 52912cb9e3b033330ea15e4c5954a0b48145d643)
++++ b/app/src/main/java/com/example/project1/MainActivity.kt	(date 1766669912504)
+@@ -1,137 +1,63 @@
+ package com.example.project1
+ 
+ import Film
+-import FilmListRecyclerAdapter
+-import TopSpacingItemDecoration
+-import android.content.Intent
++import HomeFragment
+ import android.os.Bundle
+ import android.widget.Toast
+-import androidx.activity.ComponentActivity
+ import androidx.appcompat.app.AppCompatActivity
+-import androidx.recyclerview.widget.LinearLayoutManager
+ import com.example.project1.databinding.ActivityMainBinding
+ 
+-
+ class MainActivity : AppCompatActivity() {
+ 
+-    private val filmsDataBase = listOf(
+-        Film("Воображаемый друг", R.drawable.ffmqt, "This should be a description"),
+-        Film("Пила Наследие", R.drawable.lgncz, "This should be a description"),
+-        Film(
+-            "The Godfather",
+-            R.drawable.the_godfather,
+-            "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."
+-        ),
+-        Film(
+-            "The Godfather",
+-            R.drawable.the_godfather,
+-            "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."
+-        ),
+-        Film(
+-            "The Godfather",
+-            R.drawable.the_godfather,
+-            "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."
+-        ),
+-        Film(
+-            "The Godfather",
+-            R.drawable.the_godfather,
+-            "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to its reluctant son."
+-        ),
+-        Film(
+-            "The Godfather",
+-            R.drawable.the_godfather,
+-            "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to its reluctant son."
+-        ),
+-        Film(
+-            "The Godfather",
+-            R.drawable.the_godfather,
+-            "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to its reluctant son."
+-        )
+-    )
+-
+-    private lateinit var filmsAdapter: FilmListRecyclerAdapter
++    private lateinit var binding: ActivityMainBinding
+ 
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
++        binding = ActivityMainBinding.inflate(layoutInflater)
++        setContentView(binding.root)
++
+         initNavigation()
+-        supportFragmentManager.beginTransaction()
+-            .add(R.id.fragment_placeholder, HomeFragment())
+-            .addToBackStack(null)
+-            .commit()
++
++        // Запускаем HomeFragment, если это первый запуск
++        if (supportFragmentManager.findFragmentById(R.id.fragment_placeholder) == null) {
++            supportFragmentManager.beginTransaction()
++                .add(R.id.fragment_placeholder, HomeFragment())
++                .commit()
++        }
+     }
+-
+ 
+     private fun initNavigation() {
+-        val binding = ActivityMainBinding.inflate(layoutInflater)
+-        setContentView(binding.root)
+-
+-        // --- Обработчики меню TopAppBar ---
+         binding.topAppBar.setOnMenuItemClickListener {
+             when (it.itemId) {
+                 R.id.settings -> {
+                     Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
+                     true
+                 }
+-
+-                R.id.topAppBar -> {
+-                    Toast.makeText(this, "Меню", Toast.LENGTH_SHORT).show()
+-                    true
+-                }
+-
+                 else -> false
+             }
+         }
+ 
+-        // --- Обработчики BottomNavigationView ---
+         binding.bottomNavigation.setOnItemSelectedListener {
+             when (it.itemId) {
+-                R.id.favorites -> {
+-                    Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
+-                    true
+-                }
+-
+-                R.id.watch_later -> {
+-                    Toast.makeText(this, "Посмотреть позже", Toast.LENGTH_SHORT).show()
+-                    true
+-                }
+-
+-                R.id.selections -> {
+-                    Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
+-                    true
+-                }
+-
++                R.id.favorites -> { /* Логика */ true }
++                R.id.watch_later -> { /* Логика */ true }
++                R.id.selections -> { /* Логика */ true }
+                 else -> false
+             }
+         }
++    }
+ 
+-        // --- Инициализация RecyclerView ---
+-        binding.mainRecycler.apply {
+-            filmsAdapter =
+-                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
+-                    override fun click(film: Film) {
+-                        //Создаем бандл и кладем туда объект с данными фильма
+-                        val bundle = Bundle()
+-                        bundle.putParcelable("film", film)
+-
+-                        // Запускаем наше активити
+-                        val intent = Intent(this@MainActivity, DetailsActivity::class.java)
+-
+-                        // Прикрепляем бандл к интенту
+-                        // putExtras - это правильный метод для Intent
+-                        intent.putExtras(bundle)
+-
+-                        // Запускаем активити через интент
+-                        startActivity(intent)
+-                    }
+-                })
++    // Метод для перехода на фрагмент деталей (вызывается из HomeFragment)
++    fun launchDetailsFragment(film: Film) {
++        val bundle = Bundle()
++        bundle.putParcelable("film", film)
++        val fragment = DetailsFragment()
++        fragment.arguments = bundle
+ 
+-            adapter = filmsAdapter
+-            layoutManager = LinearLayoutManager(this@MainActivity)
+-            val decorator = TopSpacingItemDecoration(8)
+-            addItemDecoration(decorator)
+-        }
+-
+-        // Кладем нашу БД в RV
+-        filmsAdapter.addItems(filmsDataBase)
++        supportFragmentManager
++            .beginTransaction()
++            .replace(R.id.fragment_placeholder, fragment)
++            .addToBackStack(null)
++            .commit()
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\">\n\n    <application\n        android:allowBackup=\"true\"\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\n        android:fullBackupContent=\"@xml/backup_rules\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/AppTheme\">\n        <activity\n            android:name=\".DetailsActivity\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".MainActivity\"\n            android:exported=\"true\"\n            android:theme=\"@style/AppTheme\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n    </application>\n\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 52912cb9e3b033330ea15e4c5954a0b48145d643)
++++ b/app/src/main/AndroidManifest.xml	(date 1766587589957)
+@@ -11,7 +11,7 @@
+         android:supportsRtl="true"
+         android:theme="@style/AppTheme">
+         <activity
+-            android:name=".DetailsActivity"
++            android:name=".DetailsFragment"
+             android:exported="false" />
+         <activity
+             android:name=".MainActivity"
+Index: .idea/codeStyles/Project.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"ProjectCodeStyleConfiguration\">\n  <code_scheme name=\"Project\" version=\"173\">\n    <JetCodeStyleSettings>\n      <option name=\"CODE_STYLE_DEFAULTS\" value=\"KOTLIN_OFFICIAL\" />\n    </JetCodeStyleSettings>\n    <codeStyleSettings language=\"XML\">\n      <option name=\"FORCE_REARRANGE_MODE\" value=\"1\" />\n      <indentOptions>\n        <option name=\"CONTINUATION_INDENT_SIZE\" value=\"4\" />\n      </indentOptions>\n      <arrangement>\n        <rules>\n          <section>\n            <rule>\n              <match>\n                <AND>\n                  <NAME>xmlns:android</NAME>\n                  <XML_ATTRIBUTE />\n                  <XML_NAMESPACE>^$</XML_NAMESPACE>\n                </AND>\n              </match>\n            </rule>\n          </section>\n          <section>\n            <rule>\n              <match>\n                <AND>\n                  <NAME>xmlns:.*</NAME>\n                  <XML_ATTRIBUTE />\n                  <XML_NAMESPACE>^$</XML_NAMESPACE>\n                </AND>\n              </match>\n              <order>BY_NAME</order>\n            </rule>\n          </section>\n          <section>\n            <rule>\n              <match>\n                <AND>\n                  <NAME>.*:id</NAME>\n                  <XML_ATTRIBUTE />\n                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>\n                </AND>\n              </match>\n            </rule>\n          </section>\n          <section>\n            <rule>\n              <match>\n                <AND>\n                  <NAME>.*:name</NAME>\n                  <XML_ATTRIBUTE />\n                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>\n                </AND>\n              </match>\n            </rule>\n          </section>\n          <section>\n            <rule>\n              <match>\n                <AND>\n                  <NAME>name</NAME>\n                  <XML_ATTRIBUTE />\n                  <XML_NAMESPACE>^$</XML_NAMESPACE>\n                </AND>\n              </match>\n            </rule>\n          </section>\n          <section>\n            <rule>\n              <match>\n                <AND>\n                  <NAME>style</NAME>\n                  <XML_ATTRIBUTE />\n                  <XML_NAMESPACE>^$</XML_NAMESPACE>\n                </AND>\n              </match>\n            </rule>\n          </section>\n          <section>\n            <rule>\n              <match>\n                <AND>\n                  <NAME>.*</NAME>\n                  <XML_ATTRIBUTE />\n                  <XML_NAMESPACE>^$</XML_NAMESPACE>\n                </AND>\n              </match>\n              <order>BY_NAME</order>\n            </rule>\n          </section>\n          <section>\n            <rule>\n              <match>\n                <AND>\n                  <NAME>.*</NAME>\n                  <XML_ATTRIBUTE />\n                  <XML_NAMESPACE>http://schemas.android.com/apk/res/android</XML_NAMESPACE>\n                </AND>\n              </match>\n              <order>ANDROID_ATTRIBUTE_ORDER</order>\n            </rule>\n          </section>\n          <section>\n            <rule>\n              <match>\n                <AND>\n                  <NAME>.*</NAME>\n                  <XML_ATTRIBUTE />\n                  <XML_NAMESPACE>.*</XML_NAMESPACE>\n                </AND>\n              </match>\n              <order>BY_NAME</order>\n            </rule>\n          </section>\n        </rules>\n      </arrangement>\n    </codeStyleSettings>\n    <codeStyleSettings language=\"kotlin\">\n      <option name=\"CODE_STYLE_DEFAULTS\" value=\"KOTLIN_OFFICIAL\" />\n    </codeStyleSettings>\n  </code_scheme>\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/codeStyles/Project.xml b/.idea/codeStyles/Project.xml
+--- a/.idea/codeStyles/Project.xml	(revision 52912cb9e3b033330ea15e4c5954a0b48145d643)
++++ b/.idea/codeStyles/Project.xml	(date 1766585549341)
+@@ -1,5 +1,39 @@
+ <component name="ProjectCodeStyleConfiguration">
+   <code_scheme name="Project" version="173">
++    <JavaCodeStyleSettings>
++      <option name="IMPORT_LAYOUT_TABLE">
++        <value>
++          <package name="android" withSubpackages="true" static="true" />
++          <package name="androidx" withSubpackages="true" static="true" />
++          <package name="com" withSubpackages="true" static="true" />
++          <package name="junit" withSubpackages="true" static="true" />
++          <package name="net" withSubpackages="true" static="true" />
++          <package name="org" withSubpackages="true" static="true" />
++          <package name="java" withSubpackages="true" static="true" />
++          <package name="javax" withSubpackages="true" static="true" />
++          <package name="" withSubpackages="true" static="true" />
++          <emptyLine />
++          <package name="android" withSubpackages="true" static="false" />
++          <emptyLine />
++          <package name="androidx" withSubpackages="true" static="false" />
++          <emptyLine />
++          <package name="com" withSubpackages="true" static="false" />
++          <emptyLine />
++          <package name="junit" withSubpackages="true" static="false" />
++          <emptyLine />
++          <package name="net" withSubpackages="true" static="false" />
++          <emptyLine />
++          <package name="org" withSubpackages="true" static="false" />
++          <emptyLine />
++          <package name="java" withSubpackages="true" static="false" />
++          <emptyLine />
++          <package name="javax" withSubpackages="true" static="false" />
++          <emptyLine />
++          <package name="" withSubpackages="true" static="false" />
++          <emptyLine />
++        </value>
++      </option>
++    </JavaCodeStyleSettings>
+     <JetCodeStyleSettings>
+       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
+     </JetCodeStyleSettings>
+Index: .idea/codeStyles/codeStyleConfig.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/codeStyles/codeStyleConfig.xml b/.idea/codeStyles/codeStyleConfig.xml
+--- a/.idea/codeStyles/codeStyleConfig.xml	(revision 52912cb9e3b033330ea15e4c5954a0b48145d643)
++++ b/.idea/codeStyles/codeStyleConfig.xml	(date 1766585549356)
+@@ -1,0 +1,5 @@
++<component name="ProjectCodeStyleConfiguration">
++  <state>
++    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
++  </state>
++</component>
+\ No newline at end of file

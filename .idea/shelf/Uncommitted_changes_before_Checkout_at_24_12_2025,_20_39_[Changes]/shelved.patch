@@ -1,0 +1,244 @@
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"@color/background\">\n\n    <com.google.android.material.appbar.AppBarLayout\n        android:id=\"@+id/app_bar_layout\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"30dp\"\n        app:layout_constraintTop_toTopOf=\"parent\">\n\n        <com.google.android.material.appbar.MaterialToolbar\n            android:id=\"@+id/topAppBar\"\n            style=\"@style/Widget.MaterialComponents.Toolbar.Primary\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"?attr/actionBarSize\"\n            app:menu=\"@menu/toolbar_menu\"\n            app:navigationIcon=\"@drawable/menu\" />\n\n    </com.google.android.material.appbar.AppBarLayout>\n<!--Фрагмент-->\n    <FrameLayout\n        android:id=\"@+id/fragment_placeholder\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"400dp\"\n        app:layout_constraintTop_toBottomOf=\"@+id/app_bar_layout\"\n        app:layout_constraintBottom_toTopOf=\"@+id/bottom_navigation\"/>\n\n    <com.google.android.material.bottomnavigation.BottomNavigationView\n        android:id=\"@+id/bottom_navigation\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:background=\"@color/menu\"\n        android:theme=\"@style/AppTheme\"\n        app:itemIconTint=\"@android:color/white\"\n        app:itemTextColor=\"@android:color/white\"\n        app:labelVisibilityMode=\"labeled\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:menu=\"@menu/navigation_menu\" />\n\n    <LinearLayout\n        android:id=\"@+id/top_bar\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"200dp\"\n        android:layout_marginTop=\"10dp\"\n        android:gravity=\"center\"\n        android:orientation=\"horizontal\"\n        app:layout_constraintTop_toBottomOf=\"@id/app_bar_layout\">\n\n        <ImageView\n            android:id=\"@+id/poster1\"\n            android:layout_width=\"120dp\"\n            android:layout_height=\"wrap_content\"\n            android:scaleType=\"centerCrop\"\n            android:src=\"@drawable/q39q\" />\n\n        <ImageView\n            android:id=\"@+id/poster2\"\n            android:layout_width=\"120dp\"\n            android:layout_height=\"wrap_content\"\n            android:scaleType=\"centerCrop\"\n            android:src=\"@drawable/qazxc\" />\n\n        <ImageView\n            android:id=\"@+id/poster3\"\n            android:layout_width=\"120dp\"\n            android:layout_height=\"wrap_content\"\n            android:scaleType=\"centerCrop\"\n            android:src=\"@drawable/u565u\" />\n    </LinearLayout>\n\n    <androidx.recyclerview.widget.RecyclerView\n        android:id=\"@+id/main_recycler\"\n        android:layout_width=\"0dp\"\n        android:layout_height=\"0dp\"\n        android:layout_margin=\"16dp\"\n        app:layout_constraintTop_toBottomOf=\"@+id/top_bar\"\n        app:layout_constraintBottom_toTopOf=\"@+id/bottom_navigation\"\n        app:layout_constraintLeft_toLeftOf=\"parent\"\n        app:layout_constraintRight_toRightOf=\"parent\"/>\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision 52912cb9e3b033330ea15e4c5954a0b48145d643)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1766583500792)
+@@ -1,31 +1,34 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/main"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    android:background="@color/background">
++    android:background="@drawable/background"
++    tools:context=".MainActivity">
+ 
+     <com.google.android.material.appbar.AppBarLayout
+         android:id="@+id/app_bar_layout"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:layout_marginTop="30dp"
+         app:layout_constraintTop_toTopOf="parent">
+ 
+         <com.google.android.material.appbar.MaterialToolbar
+             android:id="@+id/topAppBar"
+-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+             android:layout_width="match_parent"
+             android:layout_height="?attr/actionBarSize"
++            app:title="@string/page_title"
++            app:navigationIcon="@drawable/ic_round_menu"
+             app:menu="@menu/toolbar_menu"
+-            app:navigationIcon="@drawable/menu" />
++            style="@style/Widget.MaterialComponents.Toolbar.Primary" />
+ 
+     </com.google.android.material.appbar.AppBarLayout>
+-<!--Фрагмент-->
++
+     <FrameLayout
+         android:id="@+id/fragment_placeholder"
+         android:layout_width="match_parent"
+-        android:layout_height="400dp"
++        android:layout_height="0dp"
+         app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
+         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"/>
+ 
+@@ -33,52 +36,11 @@
+         android:id="@+id/bottom_navigation"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:background="@color/menu"
+-        android:theme="@style/AppTheme"
+-        app:itemIconTint="@android:color/white"
++        android:background="@color/colorPrimaryDark"
+         app:itemTextColor="@android:color/white"
++        app:itemIconTint="@android:color/white"
+         app:labelVisibilityMode="labeled"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:menu="@menu/navigation_menu" />
+ 
+-    <LinearLayout
+-        android:id="@+id/top_bar"
+-        android:layout_width="match_parent"
+-        android:layout_height="200dp"
+-        android:layout_marginTop="10dp"
+-        android:gravity="center"
+-        android:orientation="horizontal"
+-        app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
+-
+-        <ImageView
+-            android:id="@+id/poster1"
+-            android:layout_width="120dp"
+-            android:layout_height="wrap_content"
+-            android:scaleType="centerCrop"
+-            android:src="@drawable/q39q" />
+-
+-        <ImageView
+-            android:id="@+id/poster2"
+-            android:layout_width="120dp"
+-            android:layout_height="wrap_content"
+-            android:scaleType="centerCrop"
+-            android:src="@drawable/qazxc" />
+-
+-        <ImageView
+-            android:id="@+id/poster3"
+-            android:layout_width="120dp"
+-            android:layout_height="wrap_content"
+-            android:scaleType="centerCrop"
+-            android:src="@drawable/u565u" />
+-    </LinearLayout>
+-
+-    <androidx.recyclerview.widget.RecyclerView
+-        android:id="@+id/main_recycler"
+-        android:layout_width="0dp"
+-        android:layout_height="0dp"
+-        android:layout_margin="16dp"
+-        app:layout_constraintTop_toBottomOf="@+id/top_bar"
+-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+-        app:layout_constraintLeft_toLeftOf="parent"
+-        app:layout_constraintRight_toRightOf="parent"/>
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/project1/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.project1\n\nimport Film\nimport FilmListRecyclerAdapter\nimport TopSpacingItemDecoration\nimport android.content.Intent\nimport android.os.Bundle\nimport android.widget.Toast\nimport androidx.activity.ComponentActivity\nimport androidx.appcompat.app.AppCompatActivity\nimport androidx.recyclerview.widget.LinearLayoutManager\nimport com.example.project1.databinding.ActivityMainBinding\n\n\nclass MainActivity : AppCompatActivity() {\n\n    private val filmsDataBase = listOf(\n        Film(\"Воображаемый друг\", R.drawable.ffmqt, \"This should be a description\"),\n        Film(\"Пила Наследие\", R.drawable.lgncz, \"This should be a description\"),\n        Film(\n            \"The Godfather\",\n            R.drawable.the_godfather,\n            \"The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.\"\n        ),\n        Film(\n            \"The Godfather\",\n            R.drawable.the_godfather,\n            \"The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.\"\n        ),\n        Film(\n            \"The Godfather\",\n            R.drawable.the_godfather,\n            \"The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.\"\n        ),\n        Film(\n            \"The Godfather\",\n            R.drawable.the_godfather,\n            \"The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to its reluctant son.\"\n        ),\n        Film(\n            \"The Godfather\",\n            R.drawable.the_godfather,\n            \"The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to its reluctant son.\"\n        ),\n        Film(\n            \"The Godfather\",\n            R.drawable.the_godfather,\n            \"The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to its reluctant son.\"\n        )\n    )\n\n    private lateinit var filmsAdapter: FilmListRecyclerAdapter\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        initNavigation()\n        supportFragmentManager.beginTransaction()\n            .add(R.id.fragment_placeholder, HomeFragment())\n            .addToBackStack(null)\n            .commit()\n    }\n\n\n    private fun initNavigation() {\n        val binding = ActivityMainBinding.inflate(layoutInflater)\n        setContentView(binding.root)\n\n        // --- Обработчики меню TopAppBar ---\n        binding.topAppBar.setOnMenuItemClickListener {\n            when (it.itemId) {\n                R.id.settings -> {\n                    Toast.makeText(this, \"Настройки\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                R.id.topAppBar -> {\n                    Toast.makeText(this, \"Меню\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                else -> false\n            }\n        }\n\n        // --- Обработчики BottomNavigationView ---\n        binding.bottomNavigation.setOnItemSelectedListener {\n            when (it.itemId) {\n                R.id.favorites -> {\n                    Toast.makeText(this, \"Избранное\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                R.id.watch_later -> {\n                    Toast.makeText(this, \"Посмотреть позже\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                R.id.selections -> {\n                    Toast.makeText(this, \"Подборки\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                else -> false\n            }\n        }\n\n        // --- Инициализация RecyclerView ---\n        binding.mainRecycler.apply {\n            filmsAdapter =\n                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {\n                    override fun click(film: Film) {\n                        //Создаем бандл и кладем туда объект с данными фильма\n                        val bundle = Bundle()\n                        bundle.putParcelable(\"film\", film)\n\n                        // Запускаем наше активити\n                        val intent = Intent(this@MainActivity, DetailsActivity::class.java)\n\n                        // Прикрепляем бандл к интенту\n                        // putExtras - это правильный метод для Intent\n                        intent.putExtras(bundle)\n\n                        // Запускаем активити через интент\n                        startActivity(intent)\n                    }\n                })\n\n            adapter = filmsAdapter\n            layoutManager = LinearLayoutManager(this@MainActivity)\n            val decorator = TopSpacingItemDecoration(8)\n            addItemDecoration(decorator)\n        }\n\n        // Кладем нашу БД в RV\n        filmsAdapter.addItems(filmsDataBase)\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/project1/MainActivity.kt b/app/src/main/java/com/example/project1/MainActivity.kt
+--- a/app/src/main/java/com/example/project1/MainActivity.kt	(revision 52912cb9e3b033330ea15e4c5954a0b48145d643)
++++ b/app/src/main/java/com/example/project1/MainActivity.kt	(date 1766500393371)
+@@ -6,7 +6,6 @@
+ import android.content.Intent
+ import android.os.Bundle
+ import android.widget.Toast
+-import androidx.activity.ComponentActivity
+ import androidx.appcompat.app.AppCompatActivity
+ import androidx.recyclerview.widget.LinearLayoutManager
+ import com.example.project1.databinding.ActivityMainBinding
+@@ -58,6 +57,23 @@
+             .add(R.id.fragment_placeholder, HomeFragment())
+             .addToBackStack(null)
+             .commit()
++        fun launchDetailsFragment(film: Film) {
++            //Создаем "посылку"
++            val bundle = Bundle()
++            //Кладем наш фильм в "посылку"
++            bundle.putParcelable("film", film)
++            //Кладем фрагмент с деталями в перменную
++            val fragment = DetailsFragment()
++            //Прикрепляем нашу "посылку" к фрагменту
++            fragment.arguments = bundle
++
++            //Запускаем фрагмент
++            supportFragmentManager
++                .beginTransaction()
++                .replace(R.id.fragment_placeholder, fragment)
++                .addToBackStack(null)
++                .commit()
++        }
+     }
+ 
+ 
+@@ -114,7 +130,7 @@
+                         bundle.putParcelable("film", film)
+ 
+                         // Запускаем наше активити
+-                        val intent = Intent(this@MainActivity, DetailsActivity::class.java)
++                        val intent = Intent(this@MainActivity, DetailsFragment::class.java)
+ 
+                         // Прикрепляем бандл к интенту
+                         // putExtras - это правильный метод для Intent
+@@ -133,5 +149,8 @@
+ 
+         // Кладем нашу БД в RV
+         filmsAdapter.addItems(filmsDataBase)
++
++
+     }
++
+ }
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\">\n\n    <application\n        android:allowBackup=\"true\"\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\n        android:fullBackupContent=\"@xml/backup_rules\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/AppTheme\">\n        <activity\n            android:name=\".DetailsActivity\"\n            android:exported=\"false\" />\n        <activity\n            android:name=\".MainActivity\"\n            android:exported=\"true\"\n            android:theme=\"@style/AppTheme\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n    </application>\n\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 52912cb9e3b033330ea15e4c5954a0b48145d643)
++++ b/app/src/main/AndroidManifest.xml	(date 1766499720500)
+@@ -11,7 +11,7 @@
+         android:supportsRtl="true"
+         android:theme="@style/AppTheme">
+         <activity
+-            android:name=".DetailsActivity"
++            android:name=".DetailsFragment"
+             android:exported="false" />
+         <activity
+             android:name=".MainActivity"
+Index: app/src/main/res/layout/activity_details.xml
+===================================================================
+diff --git a/app/src/main/res/layout/activity_details.xml b/app/src/main/res/layout/fragment_details.xml
+rename from app/src/main/res/layout/activity_details.xml
+rename to app/src/main/res/layout/fragment_details.xml
+--- a/app/src/main/res/layout/activity_details.xml	(revision 52912cb9e3b033330ea15e4c5954a0b48145d643)
++++ b/app/src/main/res/layout/fragment_details.xml	(date 1766499720525)
+@@ -5,13 +5,13 @@
+     android:id="@+id/main"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context=".DetailsActivity">
++    tools:context=".DetailsFragment">
+ 
+     <androidx.coordinatorlayout.widget.CoordinatorLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:fitsSystemWindows="true"
+-        tools:context=".DetailsActivity">
++        tools:context=".DetailsFragment">
+ 
+         <com.google.android.material.appbar.AppBarLayout
+             android:id="@+id/app_bar"
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n    <string name=\"app_name\">Project!</string>\n    <string name=\"title_app\">Film Search</string>\n    <string name=\"buttons_text\">Меню</string>\n    <string name=\"buttons_text2\">Избранное</string>\n    <string name=\"buttons_text3\">Посмотреть позже</string>\n    <string name=\"buttons_text4\">Подборки</string>\n    <string name=\"buttons_text5\">Настройки</string>\n    <string name=\"poster1_descr\">TODO</string>\n    <string name=\"poster2_descr\">TODO</string>\n    <string name=\"poster3_descr\">TODO</string>\n    <!-- TODO: Remove or change this placeholder text -->\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\n    <string name=\"disclaimer\" />\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision 52912cb9e3b033330ea15e4c5954a0b48145d643)
++++ b/app/src/main/res/values/strings.xml	(date 1766583526497)
+@@ -12,4 +12,5 @@
+     <!-- TODO: Remove or change this placeholder text -->
+     <string name="hello_blank_fragment">Hello blank fragment</string>
+     <string name="disclaimer" />
++    <string name="page_title">ferdgregfdfd</string>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/java/com/example/project1/HomeFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.project1\n\nimport android.os.Bundle\nimport androidx.fragment.app.Fragment\nimport android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nclass HomeFragment : Fragment() {\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n\n\n    }\n\n    override fun onCreateView(\n        inflater: LayoutInflater, container: ViewGroup?,\n        savedInstanceState: Bundle?\n    ): View? {\n        return inflater.inflate(R.layout.fragment_home, container, false)\n\n    }\n}
+===================================================================
+diff --git a/app/src/main/java/com/example/project1/HomeFragment.kt b/app/src/main/java/com/example/project1/HomeFragment.kt
+--- a/app/src/main/java/com/example/project1/HomeFragment.kt	(revision 52912cb9e3b033330ea15e4c5954a0b48145d643)
++++ b/app/src/main/java/com/example/project1/HomeFragment.kt	(date 1766581839802)
+@@ -13,6 +13,8 @@
+ 
+     }
+ 
++
++
+     override fun onCreateView(
+         inflater: LayoutInflater, container: ViewGroup?,
+         savedInstanceState: Bundle?

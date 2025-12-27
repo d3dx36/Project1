@@ -1,0 +1,73 @@
+Index: app/src/main/java/com/example/project1/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.project1\n\n\nimport FilmListRecyclerAdapter\nimport android.animation.ObjectAnimator\nimport android.content.res.Resources\nimport android.graphics.Rect\nimport android.os.Bundle\nimport android.view.ActionMode\nimport android.view.View\nimport android.widget.Toast\nimport androidx.activity.ComponentActivity\nimport androidx.recyclerview.widget.RecyclerView\nimport com.example.project1.databinding.ActivityMainBinding\n\nclass MainActivity : ComponentActivity() {\n    private lateinit var filmsAdapter: FilmListRecyclerAdapter\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n\n        initNavigation()\n    }\n\n    fun initNavigation() {\n        val binding = ActivityMainBinding.inflate(layoutInflater)\n        setContentView(binding.root)\n        binding.topAppBar.setOnMenuItemClickListener {\n            when (it.itemId) {\n                R.id.settings -> {\n                    Toast.makeText(this, \"Настройки\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                R.id.topAppBar -> {\n                    Toast.makeText(this, \"Меню\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                else -> false\n            }\n\n\n        }\n        binding.bottomNavigation.setOnItemSelectedListener {\n            when (it.itemId) {\n                R.id.favorites -> {\n                    Toast.makeText(this, \"Избранное\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                R.id.watch_later -> {\n                    Toast.makeText(this, \"Посмотреть позже\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                R.id.selections -> {\n                    Toast.makeText(this, \"Подборки\", Toast.LENGTH_SHORT).show()\n                    true\n                }\n\n                else -> false\n            }\n        }\n\n    }\n\n    val filmsDataBase = listOf(\n        Film(\"Film title\", R.drawable.q39q, \"This should be a description\"),\n        Film(\"Film title\", R.drawable.q39q, \"This should be a description\"),\n\n    )\n}\nclass TopSpacingItemDecoration (private val paddingInDp: Int): RecyclerView.ItemDecoration() {\n    private val Int.convertPx: Int\n        get() = (this * Resources.getSystem().displayMetrics.density).toInt()\n\n    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {\n        super.getItemOffsets(outRect, view, parent, state)\n        outRect.top = paddingInDp.convertPx\n        outRect.right = paddingInDp.convertPx\n        outRect.left = paddingInDp.convertPx\n\n    }\n}\ndata class Film(val title: String, val poster: Int, val description: String)\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/project1/MainActivity.kt b/app/src/main/java/com/example/project1/MainActivity.kt
+--- a/app/src/main/java/com/example/project1/MainActivity.kt	(revision 4c1ca7340ac53dc70eb3f92e062a26fd4f68e8d5)
++++ b/app/src/main/java/com/example/project1/MainActivity.kt	(date 1763276187940)
+@@ -1,23 +1,22 @@
+ package com.example.project1
+-
+-
+ import FilmListRecyclerAdapter
+-import android.animation.ObjectAnimator
+ import android.content.res.Resources
+ import android.graphics.Rect
+ import android.os.Bundle
+-import android.view.ActionMode
+ import android.view.View
+ import android.widget.Toast
+ import androidx.activity.ComponentActivity
++import androidx.recyclerview.widget.LinearLayoutManager
+ import androidx.recyclerview.widget.RecyclerView
+ import com.example.project1.databinding.ActivityMainBinding
+ 
+ class MainActivity : ComponentActivity() {
+     private lateinit var filmsAdapter: FilmListRecyclerAdapter
++    private lateinit var binding: ActivityMainBinding
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+-
++        binding = ActivityMainBinding.inflate(layoutInflater)
++        setContentView(binding.root)
+         initNavigation()
+     }
+ 
+@@ -61,14 +60,31 @@
+                 else -> false
+             }
+         }
+-
++        binding.mainRecycler.apply {
++            //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
++            //оставим его пока пустым, он нам понадобится во второй части задания
++            filmsAdapter = FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener{
++                override fun click(film: Film) {}
++            })
++            //Присваиваем адаптер
++            adapter = filmsAdapter
++            //Присвои layoutmanager
++            layoutManager = LinearLayoutManager(this@MainActivity)
++            //Применяем декоратор для отступов
++            val decorator = TopSpacingItemDecoration(8)
++            addItemDecoration(decorator)
++        }
++        //Кладем нашу БД в RV
++        filmsAdapter.addItems(filmsDataBase)
+     }
+ 
+     val filmsDataBase = listOf(
+-        Film("Film title", R.drawable.q39q, "This should be a description"),
+-        Film("Film title", R.drawable.q39q, "This should be a description"),
++        Film("Film title", R.drawable.nine_windows, "This should be a description"),
++        Film("Film title", R.drawable.imaginary, "This should be a description"),
+ 
+     )
++
++
+ }
+ class TopSpacingItemDecoration (private val paddingInDp: Int): RecyclerView.ItemDecoration() {
+     private val Int.convertPx: Int

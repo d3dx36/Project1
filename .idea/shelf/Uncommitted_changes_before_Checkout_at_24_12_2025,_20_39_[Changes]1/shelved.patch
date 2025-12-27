@@ -1,0 +1,155 @@
+Index: app/src/main/java/com/example/project1/DetailsActivity.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/project1/DetailsActivity.kt b/app/src/main/java/com/example/project1/DetailsFragment.kt
+rename from app/src/main/java/com/example/project1/DetailsActivity.kt
+rename to app/src/main/java/com/example/project1/DetailsFragment.kt
+--- a/app/src/main/java/com/example/project1/DetailsActivity.kt	(revision 52912cb9e3b033330ea15e4c5954a0b48145d643)
++++ b/app/src/main/java/com/example/project1/DetailsFragment.kt	(date 1766582242065)
+@@ -2,78 +2,53 @@
+ 
+ import Film
+ import android.os.Bundle
+-import android.util.Log
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
+ import android.widget.Toast
+-import androidx.activity.ComponentActivity
+-import com.example.project1.databinding.ActivityDetailsBinding // Предполагаем, что ваш layout называется activity_details.xml
++import androidx.fragment.app.Fragment
++import com.example.project1.databinding.FragmentDetailsBinding // Проверьте имя!
+ 
+-class DetailsActivity : ComponentActivity() {
++class DetailsFragment : Fragment() {
+ 
+-    // Объявляем переменную для View Binding
+-    private lateinit var binding: ActivityDetailsBinding
++    // 1. Используем nullable binding, чтобы избежать утечек памяти
++    private var _binding: FragmentDetailsBinding? = null
++    private val binding get() = _binding!!
+ 
+-    override fun onCreate(savedInstanceState: Bundle?) {
+-        super.onCreate(savedInstanceState)
++    override fun onCreateView(
++        inflater: LayoutInflater, container: ViewGroup?,
++        savedInstanceState: Bundle?
++    ): View {
++        // 2. Инициализируем binding именно здесь
++        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
++        return binding.root
++    }
+ 
+-        // 1. Инициализация View Binding и установка макета
+-        binding = ActivityDetailsBinding.inflate(layoutInflater)
+-        setContentView(binding.root)
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
+ 
+-        // Получаем объект Film
+-        val film = getFilmFromIntent()
++        // 3. Получаем фильм из аргументов (те самые Bundle, что мы передавали)
++        val film = arguments?.getParcelable<Film>("film")
+ 
+-        // 4. Вызываем функцию привязки, если фильм получен успешно
+         if (film != null) {
+-            bind(film)
++            setFilmsDetails(film)
+         } else {
+-            // Если фильм не получен, сообщаем об ошибке и завершаем Activity
+-            Toast.makeText(this, "Ошибка: данные фильма отсутствуют", Toast.LENGTH_LONG).show()
+-            finish()
+-        }
+-    }
+-
+-    /**
+-     * Получает объект Film из Intent, используя безопасный метод.
+-     */
+-    private fun getFilmFromIntent(): Film? {
+-        val extras = intent.extras
+-        if (extras == null) {
+-            Log.e("DetailsActivity", "Extras в Intent отсутствуют.")
+-            return null
+-        }
+-
+-        // Безопасное получение Parcelable.
+-        // Используем метод, который подходит для разных версий Android.
+-        @Suppress("DEPRECATION")
+-        val film = extras.getParcelable<Film>("film")
+-
+-        // Если вы используете Kotlin Extension (например, Android KTX) и API 33+,
+-        // вы могли бы использовать:
+-        // val film = intent.getParcelableExtra("film", Film::class.java)
+-
+-        if (film == null) {
+-            Log.e("DetailsActivity", "Объект 'film' не найден или имеет неверный тип.")
++            Toast.makeText(requireContext(), "Ошибка: данные отсутствуют", Toast.LENGTH_SHORT).show()
++            // Чтобы "закрыть" фрагмент, нужно вернуться назад в стеке
++            parentFragmentManager.popBackStack()
+         }
+-        return film
+     }
+ 
+-    /**
+-     * Привязывает данные фильма к элементам UI.
+-     * @param film Объект Film для отображения.
+-     */
+-    private fun bind(film: Film) {
+-        // 3. Используем View Binding для доступа к элементам
+-        // Предполагается, что id элементов в activity_details.xml
+-        // соответствуют названиям в вашем исходном коде:
+-
+-        // Устанавливаем заголовок в Toolbar
+-        // Если у вас Material Toolbar (com.google.android.material.appbar.MaterialToolbar):
++    private fun setFilmsDetails(film: Film) {
++        // Устанавливаем данные через binding
+         binding.detailsToolbar.title = film.title
+-
+-        // Устанавливаем картинку в ImageView
+         binding.detailsPoster.setImageResource(film.poster)
+-
+-        // Устанавливаем описание в TextView
+         binding.detailsDescription.text = film.description
+     }
++
++    // 4. Обязательно очищаем binding в onDestroyView
++    override fun onDestroyView() {
++        super.onDestroyView()
++        _binding = null
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/project1/FilmListRecyclerAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport androidx.recyclerview.widget.RecyclerView\n//import com.example.project1.Film\nimport com.example.project1.R\n\n//в параметр передаем слушатель, чтобы мы потом могли обрабатывать нажатия из класса Activity\nclass FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {\n    //Здесь у нас хранится список элементов для RV\n    private val items = mutableListOf<Film>()\n\n    //Этот метод нужно переопределить на возврат количества элементов в списке RV\n    override fun getItemCount() = items.size\n\n    //В этом методе мы привязываем наш ViewHolder и передаем туда \"надутую\" верстку нашего фильма\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {\n        return FilmViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.film_item, parent, false))\n    }\n\n    //В этом методе будет привязка полей из объекта Film к View из film_item.xml\n    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {\n        //Проверяем, какой у нас ViewHolder\n        when (holder) {\n            is FilmViewHolder -> {\n                //Вызываем метод bind(), который мы создали, и передаем туда объект\n                //из нашей базы данных с указанием позиции\n                holder.bind(items[position])\n                //Обрабатываем нажатие на весь элемент целиком(можно сделать на отдельный элемент\n                //например, картинку) и вызываем метод нашего листенера, который мы получаем из\n                //конструктора адаптера\n                holder.itemContainer.setOnClickListener {\n                    clickListener.click(items[position])\n                }\n            }\n        }\n    }\n\n\n    //Метод для добавления объектов в наш список\n    fun addItems(list: List<Film>) {\n        //Сначала очищаем(если не реализовать DiffUtils)\n        items.clear()\n        //Добавляем\n        items.addAll(list)\n        //Уведомляем RV, что пришел новый список, и ему нужно заново все \"привязывать\"\n        notifyDataSetChanged()\n    }\n\n    //Интерфейс для обработки кликов\n    interface OnItemClickListener {\n        fun click(film: Film)\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/project1/FilmListRecyclerAdapter.kt b/app/src/main/java/com/example/project1/FilmListRecyclerAdapter.kt
+--- a/app/src/main/java/com/example/project1/FilmListRecyclerAdapter.kt	(revision 52912cb9e3b033330ea15e4c5954a0b48145d643)
++++ b/app/src/main/java/com/example/project1/FilmListRecyclerAdapter.kt	(date 1766583398634)
+@@ -1,9 +1,16 @@
++import android.content.Intent
++import android.os.Bundle
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
++import androidx.core.content.ContentProviderCompat.requireContext
++import androidx.core.content.ContextCompat.startActivity
+ import androidx.recyclerview.widget.RecyclerView
++import com.example.project1.DetailsFragment
++import com.example.project1.MainActivity
+ //import com.example.project1.Film
+ import com.example.project1.R
++import kotlin.jvm.java
+ 
+ //в параметр передаем слушатель, чтобы мы потом могли обрабатывать нажатия из класса Activity
+ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+@@ -51,4 +58,6 @@
+     interface OnItemClickListener {
+         fun click(film: Film)
+     }
++
++
+ }
+\ No newline at end of file
