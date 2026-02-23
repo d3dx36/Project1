@@ -1,6 +1,7 @@
 package com.example.project1
 
 import Film
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,28 +17,64 @@ class DetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Здесь тоже меняем на FragmentDetailsBinding
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1. Достаем наш фильм из "посылки" (arguments)
         @Suppress("DEPRECATION")
         val film = arguments?.getParcelable<Film>("film")
 
-        // 2. Если фильм доехал успешно, привязываем данные к View
-        film?.let {
-            binding.detailsToolbar.title = it.title
-            binding.detailsPoster.setImageResource(it.poster)
-            binding.detailsDescription.text = it.description
+        film?.let { currentFilm ->
+            // Наполняем данными
+            binding.detailsToolbar.title = currentFilm.title
+            binding.detailsPoster.setImageResource(currentFilm.poster)
+            binding.detailsDescription.text = currentFilm.description
+
+            // ЛОГИКА КНОПКИ НАЗАД
+            binding.detailsToolbar.setNavigationOnClickListener {
+                requireActivity().onBackPressedDispatcher.onBackPressed()
+            }
+
+            // Логика кнопки "Поделиться"
+            binding.detailsFab.setOnClickListener {
+                val intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, "Check out this movie: ${currentFilm.title} \n\n ${currentFilm.description}")
+                    type = "text/plain"
+                }
+                startActivity(Intent.createChooser(intent, "Share To:"))
+            }
+
+            // Логика кнопки "Избранное"
+            binding.detailsFabFavorites.setImageResource(
+                if (currentFilm.isInFavorites) R.drawable.ic_baseline_favorite_24
+                else R.drawable.ic_baseline_favorite_border_24
+            )
+
+            binding.detailsFabFavorites.setOnClickListener {
+                if (!currentFilm.isInFavorites) {
+                    binding.detailsFabFavorites.setImageResource(R.drawable.ic_baseline_favorite_24)
+                    currentFilm.isInFavorites = true
+                } else {
+                    binding.detailsFabFavorites.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                    currentFilm.isInFavorites = false
+                }
+            }
         }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+
+
     }
+
+
 }

@@ -1,9 +1,8 @@
+package com.example.project1
 import android.content.res.Resources
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-
-
 class TopSpacingItemDecoration ( val paddingInDp: Int): RecyclerView.ItemDecoration() {
     private val Int.convertPx: Int
         get() = (this * Resources.getSystem().displayMetrics.density).toInt()
