@@ -74,19 +74,19 @@ class HomeFragment : Fragment() {
             //Этот метод отрабатывает на каждое изменения текста
 
             override fun onQueryTextChange(newText: String): Boolean {
-                //Если ввод пуст то вставляем в адаптер всю БД
-                val result=(activity as MainActivity).filmsDataBase.filter
+                // Если ввод пуст, то вставляем в адаптер всю БД
                 if (newText.isEmpty()) {
-                    filmsAdapter.addItems( filmsDataBase)
+                    filmsAdapter.addItems((activity as MainActivity).filmsDataBase)
                     return true
                 }
-                //Фильтруем список на поискк подходящих сочетаний
 
-                 val result = filmsDataBase.filter {
-                    //Чтобы все работало правильно, нужно и запрос, и имя фильма приводить к нижнему регистру
+                // Фильтруем список на поиск подходящих сочетаний
+                val result = (activity as MainActivity).filmsDataBase.filter {
+                    // Чтобы все работало правильно, нужно и запрос, и имя фильма приводить к нижнему регистру
                     it.title.lowercase(Locale.getDefault()).contains(newText.lowercase(Locale.getDefault()))
                 }
-                //Добавляем в адаптер
+
+                // Добавляем в адаптер результат фильтрации
                 filmsAdapter.addItems(result)
                 return true
             }
