@@ -1,7 +1,6 @@
 package com.example.project1
 
 import Film
-import FilmListRecyclerAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

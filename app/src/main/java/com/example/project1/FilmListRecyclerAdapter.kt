@@ -1,8 +1,11 @@
+package com.example.project1
+
+import Film
+import FilmViewHolder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 //import com.example.project1.Film
-import com.example.project1.R
 import com.example.project1.databinding.FilmItemBinding
 
 //в параметр передаем слушатель, чтобы мы потом могли обрабатывать нажатия из класса Activity

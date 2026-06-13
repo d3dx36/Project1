@@ -8,7 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.project1.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity   : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -117,7 +117,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
                     true
                 }
-
                 else -> false
             }
         }
