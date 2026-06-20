@@ -1,4 +1,4 @@
-@file:Suppress("DEPRECATED_ANNOTATION")
+package com.example.project1.domain
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

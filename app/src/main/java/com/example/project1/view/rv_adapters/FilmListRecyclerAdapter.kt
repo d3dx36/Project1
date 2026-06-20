@@ -1,12 +1,11 @@
-package com.example.project1
+package com.example.project1.view.rv_adapters
 
-import Film
-import FilmViewHolder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-//import com.example.project1.Film
+import com.example.project1.domain.Film
 import com.example.project1.databinding.FilmItemBinding
+import com.example.project1.view.rv_viewholders.FilmViewHolder
 
 //в параметр передаем слушатель, чтобы мы потом могли обрабатывать нажатия из класса Activity
 class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -24,7 +23,7 @@ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : 
         return FilmViewHolder(binding)
     }
 
-    //В этом методе будет привязка полей из объекта Film к View из film_item.xml
+    //В этом методе будет привязка полей из объекта com.example.project1.damain.Film к View из film_item.xml
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         //Проверяем, какой у нас ViewHolder
         when (holder) {

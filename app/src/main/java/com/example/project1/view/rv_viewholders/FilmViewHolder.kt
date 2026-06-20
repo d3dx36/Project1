@@ -1,4 +1,7 @@
+package com.example.project1.view.rv_viewholders
+
 import androidx.recyclerview.widget.RecyclerView
+import com.example.project1.domain.Film
 import com.example.project1.databinding.FilmItemBinding
 
 class FilmViewHolder(private val binding: FilmItemBinding) : RecyclerView.ViewHolder(binding.root) {

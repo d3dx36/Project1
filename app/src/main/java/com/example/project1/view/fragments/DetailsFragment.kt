@@ -1,12 +1,13 @@
-package com.example.project1
+package com.example.project1.view.fragments
 
-import Film
+import com.example.project1.domain.Film
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.project1.R
 import com.example.project1.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
